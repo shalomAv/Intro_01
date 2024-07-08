@@ -1,0 +1,49 @@
+#+startup: showall
+* Swap Example
+From Introductory slides, outlines a first C program that incorrectly
+swaps two variables then demonstrates the correct way to swap.
+
+* ORIGINAL CODE
+#+BEGIN_SRC c
+> int x;                  
+> x = 42;                 
+> int y = 31;             
+> // swap x and y (?)     
+> x = y;                  
+> y = x;
+> printf("x: %d y: %d\n",x,y); 
+#+END_SRC
+
+* MEMORY                   
+| Addr  | Name | Value |
+|-------+------+-------|
+| #1032 | x    |    31 |
+| #1028 | y    |    31 |
+| #1024 |      |       |
+
+SCREEN:
+x: 31 y: 31
+
+* CORRECT CODE
+#+BEGIN_SRC c
+int x;                  
+x = 42;                 
+int y = 31;             
+int temp;
+// swap x and y (?)     
+temp = x;
+x = y;                  
+y = temp;
+printf("x: %d y: %d\n",x,y); 
+#+END_SRC
+
+* MEMORY                   
+| Addr  | Name | Value |
+|-------+------+-------|
+| #1032 | x    |    31 |
+| #1028 | y    |    42 |
+| #1024 | temp |     0 |
+
+SCREEN:
+x: 31 y: 42
+
